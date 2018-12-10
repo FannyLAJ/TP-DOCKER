@@ -9,6 +9,10 @@ services:
       - 8091:8091
     volumes:
       - /data/confluence:/var/atlassian/application-data/confluence
+    deploy:
+      placement:
+        constraints:
+          - node.role == worker
 
   jira:
     image: cptactionhank/atlassian-jira
@@ -16,6 +20,10 @@ services:
       - 8080:8080
     volumes:
       - /data/jira:/var/atlassian/application-data/jira
+    deploy:
+      placement:
+        constraints:
+          - node.role == worker
 
   bitbucket:
     image: atlassian/bitbucket-server
@@ -24,6 +32,10 @@ services:
       - 7999:7999
     volumes:
       - /data/bitbucket:/var/atlassian/application-data/bitbucket
+     deploy:
+        placement:
+          constraints:
+            - node.role == worker
 
 volumes:
     - data/confluence:
