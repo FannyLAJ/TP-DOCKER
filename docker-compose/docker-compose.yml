@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  confluence:
+    image: atlassian/confluence-server
+    ports:
+      - 8090:8090
+      - 8091:8091
+    volumes:
+      - /data/confluence:/var/atlassian/application-data/confluence
+
+  jira:
+    image: cptactionhank/atlassian-jira
+    ports:
+      - 8080:8080
+    volumes:
+      - /data/jira:/var/atlassian/application-data/jira
+
+  bitbucket:
+    image: atlassian/bitbucket-server
+    ports:
+      - 7990:7990
+      - 7999:7999
+    volumes:
+      - /data/bitbucket:/var/atlassian/application-data/bitbucket
+
+volumes:
+    - data/confluence:
+    - data/jira:
+    - data/bitbucket:
